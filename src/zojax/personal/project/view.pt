@@ -1,0 +1,5 @@
+<h1>My Tasks</h1>
+
+<div class="project-tasks">
+  <tal:block content="structure provider:project.tasks" />
+</div>

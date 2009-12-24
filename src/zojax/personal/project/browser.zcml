@@ -1,0 +1,58 @@
+<configure
+   xmlns="http://namespaces.zope.org/zope"
+   xmlns:zojax="http://namespaces.zope.org/zojax"
+   xmlns:browser="http://namespaces.zope.org/browser"
+   i18n_domain="zojax.personal.project">
+
+  <!-- workspace publisher -->
+  <adapter factory=".view.MyTasksPublisher" />
+
+  <class class=".view.MyTasksPublisher">
+    <allow interface="zope.publisher.interfaces.browser.IBrowserPublisher" />
+  </class>
+
+  <!-- tasks table -->
+  <zojax:pagelet
+     name="index.html"
+     for=".interfaces.IMyTasks"
+     template="view.pt"
+     permission="zojax.ViewPersonalProject" />
+
+  <adapter
+     name="project.tasks"
+     provides="zope.contentprovider.interfaces.IContentProvider"
+     factory=".view.MyTasks" />
+
+  <adapter
+     name="title"
+     factory=".view.TitleColumn" />
+
+  <!-- portlets managers -->
+  <zojax:portletManager
+     name="columns.left"
+     for=".interfaces.IMyTasks"
+     title="My tasks left column"
+     schema=".interfaces.ILeftPortletManager" 
+     class="zojax.personal.space.portletmanager.PortletManager"
+     portlettype="zojax.personal.space.interfaces.IPersonalWorkspacePortlet" />
+
+  <zojax:portletManager
+     name="columns.right"
+     for=".interfaces.IMyTasks"
+     title="My tasks right column"
+     schema=".interfaces.IRightPortletManager" 
+     class="zojax.personal.space.portletmanager.PortletManager"
+     portlettype="zojax.personal.space.interfaces.IPersonalWorkspacePortlet" />
+
+  <!-- icons -->
+  <browser:icon
+     name="zmi_icon"
+     for=".interfaces.IMyTasks"
+     file="icons/project.png" />
+
+  <browser:icon
+     name="zmi_icon"
+     for=".interfaces.IMyTasksFactory"
+     file="icons/project.png" />
+
+</configure>

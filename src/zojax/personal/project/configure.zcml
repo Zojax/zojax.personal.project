@@ -1,0 +1,43 @@
+<configure
+   xmlns="http://namespaces.zope.org/zope"
+   xmlns:zojax="http://namespaces.zope.org/zojax"
+   xmlns:browser="http://namespaces.zope.org/browser"
+   i18n_domain="zojax.personal.project">
+
+  <permission
+     id="zojax.ViewPersonalProject"
+     title="View personal project" />
+
+  <grant
+     role="content.Owner"
+     permission="zojax.ViewPersonalProject" />
+
+  <!-- mytasks workspace factory -->
+  <adapter
+     name="mytasks"
+     factory=".workspace.MyTasksFactory" />
+
+  <class class=".workspace.MyTasks">
+    <implements interface="zojax.extensions.interfaces.IExtensible" />
+    <implements interface="zojax.ownership.interfaces.IInheritOwnership" />
+    <implements interface="zojax.content.type.interfaces.IRenameNotAllowed" />
+    <implements interface="zojax.content.type.interfaces.IUnremoveableContent" />
+    <implements
+       interface="zojax.content.type.interfaces.IContainerContentsAware" />
+    <implements 
+       interface="zope.app.container.interfaces.IContainerNamesContainer" />
+
+    <require
+       permission="zojax.ViewPersonalProject"
+       interface="zojax.content.type.interfaces.IItem
+		  zope.app.container.interfaces.IReadContainer" />
+  </class>
+  
+  <utility
+     name="mytasks"
+     factory=".workspace.MyTasksDescription" />
+
+ <!-- browser views -->
+  <include file="browser.zcml" />
+
+</configure>
