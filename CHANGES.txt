@@ -1,9 +1,8 @@
-=======
-CHANGES
-=======
-
-
-0.1.0 (Unreleased)
+1.0.2 (Unreleased)
 ------------------
 
-- Initial release.
+
+1.0.1 (2010-01-19)
+------------------
+
+- zojax initial release
