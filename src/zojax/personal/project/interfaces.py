@@ -48,3 +48,11 @@ class IRightPortletManager(IPortletManagerConfiguration):
         value_type = schema.Choice(vocabulary = 'zojax portlets'),
         default = ('portlet.actions',),
         required = True)
+
+
+class IMyProjects(IWorkspace):
+    """ my projects workspace """
+
+
+class IMyProjectsFactory(IWorkspaceFactory):
+    """ factory """

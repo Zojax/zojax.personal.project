@@ -32,7 +32,7 @@
      name="columns.left"
      for=".interfaces.IMyTasks"
      title="My tasks left column"
-     schema=".interfaces.ILeftPortletManager" 
+     schema=".interfaces.ILeftPortletManager"
      class="zojax.personal.space.portletmanager.PortletManager"
      portlettype="zojax.personal.space.interfaces.IPersonalWorkspacePortlet" />
 
@@ -40,9 +40,21 @@
      name="columns.right"
      for=".interfaces.IMyTasks"
      title="My tasks right column"
-     schema=".interfaces.IRightPortletManager" 
+     schema=".interfaces.IRightPortletManager"
      class="zojax.personal.space.portletmanager.PortletManager"
      portlettype="zojax.personal.space.interfaces.IPersonalWorkspacePortlet" />
+
+  <!-- projects -->
+  <browser:defaultView
+     name="index.html"
+     for=".interfaces.IMyProjects" />
+
+  <zojax:pagelet
+     name="index.html"
+     for=".interfaces.IMyProjects"
+     template="myprojects.pt"
+     class=".myprojects.BrowseMyProjects"
+     permission="zojax.ViewPersonalProject" />
 
   <!-- icons -->
   <browser:icon
@@ -53,6 +65,16 @@
   <browser:icon
      name="zmi_icon"
      for=".interfaces.IMyTasksFactory"
+     file="icons/project.png" />
+
+  <browser:icon
+     name="zmi_icon"
+     for=".interfaces.IMyProjects"
+     file="icons/project.png" />
+
+  <browser:icon
+     name="zmi_icon"
+     for=".interfaces.IMyProjectsFactory"
      file="icons/project.png" />
 
 </configure>

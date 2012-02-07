@@ -27,7 +27,7 @@
     <implements interface="zojax.content.type.interfaces.IUnremoveableContent" />
     <implements
        interface="zojax.content.type.interfaces.IContainerContentsAware" />
-    <implements 
+    <implements
        interface="zope.app.container.interfaces.IContainerNamesContainer" />
 
     <require
@@ -35,10 +35,35 @@
        interface="zojax.content.type.interfaces.IItem
 		  zope.app.container.interfaces.IReadContainer" />
   </class>
-  
+
   <utility
      name="mytasks"
      factory=".workspace.MyTasksDescription" />
+
+  <!-- myprojects workspace factory -->
+  <adapter
+     name="myprojects"
+     factory=".workspace.MyProjectsFactory" />
+
+  <class class=".workspace.MyProjects">
+    <implements interface="zojax.extensions.interfaces.IExtensible" />
+    <implements interface="zojax.ownership.interfaces.IInheritOwnership" />
+    <implements interface="zojax.content.type.interfaces.IRenameNotAllowed" />
+    <implements interface="zojax.content.type.interfaces.IUnremoveableContent" />
+    <implements
+       interface="zojax.content.type.interfaces.IContainerContentsAware" />
+    <implements
+       interface="zope.app.container.interfaces.IContainerNamesContainer" />
+
+    <require
+       permission="zojax.ViewPersonalProject"
+       interface="zojax.content.type.interfaces.IItem
+		  zope.app.container.interfaces.IReadContainer" />
+  </class>
+
+  <utility
+     name="myprojects"
+     factory=".workspace.MyProjectsDescription" />
 
  <!-- browser views -->
   <include file="browser.zcml" />

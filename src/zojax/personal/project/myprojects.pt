@@ -1,0 +1,64 @@
+<tal:block i18n:domain="zojax.personal.project"
+           define="items view/items">
+
+<div class="my-projects-page">
+
+  <h1 i18n:translate="">My Projects</h1>
+  <div class="z-page-description" i18n:translate=""></div>
+
+    <table tal:condition="items">
+      <tr tal:repeat="item items"
+          tal:attributes="class python:repeat['item'].odd() and 'even' or 'odd'">
+        <td>
+
+    <div tal:define="info python: view.getProjectInfo(item)"
+         class="z-portlet-item">
+
+      <div class="z-portlet-item-title">
+        <img src="" tal:replace="structure info/icon" />
+        <a tal:content="info/title"
+           tal:attributes="title info/description;
+                           href info/url"
+            class="portlet-myprojects-project-title">Project</a>
+        <span i18n:translate="">in</span>
+        <tal:block content="structure info/space/@@zmi_icon|nothing" />
+        <a tal:condition="info/space"
+           tal:content="info/space/title"
+           tal:attributes="title info/space/description;
+                           href string:${info/space/@@absolute_url}/">Space</a>
+      </div>
+
+      <div class="z-portlet-item-description">
+        <div class="portlet-myprojects-tasks" tal:condition="info/tasks">
+          <div class="portlet-myprojects-task" tal:repeat="task info/tasks">
+            <tal:block content="structure task/@@zmi_icon|nothing" />
+            <a tal:content="task/title"
+               tal:attributes="title task/description;
+                               href string:${task/@@absolute_url}/">Task</a>
+            <div tal:define="comments python: view.getTaskCommits(task)"
+                 tal:repeat="comment comments"
+                  class="portlet-myprojects-comments">
+              <a class="portlet-comments-author"
+                 tal:condition="comment/author_url"
+                 tal:content="comment/author"
+                 tal:attributes="href comment/author_url">Author</a>
+              <span tal:condition="not: comment/author_url"
+                    tal:content="comment/author" />
+              :
+              <span tal:content="structure comment/text" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+        </td>
+      </tr>
+    </table>
+
+    <div tal:condition="not:items" i18n:translate="">No Projects.</div>
+
+</div>
+
+</tal:block>
