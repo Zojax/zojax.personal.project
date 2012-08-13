@@ -77,6 +77,11 @@ class MyProjectsDescription(object):
     title = _(u'My projects')
     description = u''
 
+    def createTemp(self, context):
+        ws = MyProjects()
+        ws.__parent__ = context
+        return ws
+
 
 class MyProjectsFactory(WorkspaceFactory):
     component.adapts(IPersonalSpace)
